@@ -1,0 +1,10 @@
+/* Using SCSS variables to store breakpoints */
+$breakpoint-bigDesktop: 1281px;
+$breakpoint-laptopMinWidth: 1025px;
+$breakpoint-laptopMaxWidth: 1280px;
+$breakpoint-tabletMinWidth: 768px;
+$breakpoint-tabletMaxWidth: 1024px;
+$breakpoint-mobileMinWidth: 481px;
+$breakpoint-mobileMaxWidth: 767px;
+$breakpoint-smallMobileMinWidth: 320px;
+$breakpoint-smallMobileMaxWidth: 480px;
