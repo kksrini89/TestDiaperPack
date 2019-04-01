@@ -8,25 +8,25 @@
         <h2>Our Free Test Package</h2>
         <p style="text-transfor: uppercase;">choose your size</p>
         <ul class="btn-container" style="list-style-type:none">
-          <li @click="onClickPack($event)" data-size="10">
-            <p>1</p>
-            <span>(2-3 KG)</span>
+          <li @click="onClickPack($event)" data-size="10" :class="{active: isActiveSize}">
+            <p v-on:click.stop>1</p>
+            <span v-on:click.stop>(2-3 KG)</span>
           </li>
-          <li @click="onClickPack($event)" data-size="20" >
-            <p>2</p>
-            <span>(3-4 KG)</span>
+          <li @click="onClickPack($event)" data-size="20">
+            <p v-on:click.stop>2</p>
+            <span v-on:click.stop>(3-4 KG)</span>
           </li>
           <li @click="onClickPack($event)" data-size="30">
-            <p>3</p>
-            <span>(4-7 KG)</span>
+            <p v-on:click.stop>3</p>
+            <span v-on:click.stop>(4-7 KG)</span>
           </li>
           <li @click="onClickPack($event)" data-size="40">
-            <p>4</p>
-            <span>(7-10 KG)</span>
+            <p v-on:click.stop>4</p>
+            <span v-on:click.stop>(7-10 KG)</span>
           </li>
           <li @click="onClickPack($event)" data-size="50">
-            <p>5</p>
-            <span>(10-12 KG)</span>
+            <p v-on:click.stop>5</p>
+            <span v-on:click.stop>(10-12 KG)</span>
           </li>
         </ul>
       </div>
@@ -121,7 +121,19 @@ export default {
   },
   methods: {
     onClickPack: function(event) {
-      const size = event.target.getAttribute('data-size');
+      // Stopping event bublling to child element
+      event.stopPropagation();
+
+      // Removing active class from any other element if already exists
+      let nodes = document.querySelectorAll("li.active");
+      // nodes[0].classList.remove('active');
+      Array.from(nodes).map(node => node.classList.remove("active"));
+
+      // Adding active class to currently clicked element
+      let classNames = event.target.classList;
+      classNames.add("active");
+
+      const size = event.target.getAttribute("data-size");
       // Selected Test pack
       this.selectedTestPack = mockData.find(d => d.size === size);
       // Show/Hide Test wipe content
@@ -132,6 +144,8 @@ export default {
     return {
       selectedTestPack: mockData[0],
       showWaterPipes: true,
+      isActiveSize: true,
+      isHoveringOnSize: false,
       imgDir: "assets/images"
     };
   }
@@ -141,6 +155,15 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 @import "./../styles/variables.scss";
+@mixin active {
+  background-color: #00afab;
+  border-color: #00afab;
+  color: #fff !important;
+}
+
+.active {
+  @include active;
+}
 .grid {
   display: -ms-grid;
   display: grid;
@@ -160,12 +183,17 @@ export default {
 }
 
 .test-packages > ul > li {
+  float: left;
   border: 1px solid #7c7c7c;
   text-align: center;
   width: 30%;
   padding: 7px 5px 2px;
   color: #7c7c7c;
   margin-right: 10px;
+
+  &:hover {
+    @include active;
+  }
 }
 
 .test-pack-info-container {
@@ -178,17 +206,12 @@ export default {
 .text-center {
   text-align: center !important;
 }
-.active {
-  background-color: #00afab;
-  border-color: #00afab;
-  color: #fff;
-}
 
-.hover {
-  background-color: #00afab;
-  border-color: #00afab;
-  color: #fff;
-}
+// .hover {
+//   background-color: #00afab;
+//   border-color: #00afab;
+//   color: #fff;
+// }
 
 // Media queries
 /*
