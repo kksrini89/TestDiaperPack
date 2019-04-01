@@ -25,5 +25,5 @@ export default {
   margin-top: 60px;
 }
 
-@import '../node_modules/bulma/bulma.sass'
+/* @import '../node_modules/bulma/bulma.sass' */
 </style>
