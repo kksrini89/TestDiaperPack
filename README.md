@@ -1,5 +1,7 @@
 # test-diaper
 
+This project helps to know about the trial pack for diaper products made by LillyDoo.
+
 ## Project setup
 ```
 npm install
