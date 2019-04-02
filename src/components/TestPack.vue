@@ -1,126 +1,98 @@
 <template>
-  <div class="main container">
-    <div class="test-pack columns">
-      <div class="diaper-images column is-5">
-        <img v-bind:src="require(`@/${imgDir}/${selectedTestPack.images.trial_pack}`)">
+  <div>
+    <nav class="navbar is-fixed-top main-navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="#">
+          <h2>LILLYDOO</h2>
+        </a>
       </div>
-      <div class="test-packages column is-5">
-        <section class="hero">
-          <div class="hero-body">
-            <h1 class="title">Our Free Test Package</h1>
-            <h2 class="subtitle">choose your size</h2>
-          </div>
-        </section>
-        <!-- <h2>Our Free Test Package</h2>
-        <p style="text-transform: uppercase;">choose your size</p>-->
-        <ul class="btn-container">
-          <li @click="onClickPack($event)" data-size="10" :class="{active: isActiveSize}">
-            <p v-on:click.stop>1</p>
-            <span v-on:click.stop>(2-3 KG)</span>
-          </li>
-          <li @click="onClickPack($event)" data-size="20">
-            <p v-on:click.stop>2</p>
-            <span v-on:click.stop>(3-4 KG)</span>
-          </li>
-          <li @click="onClickPack($event)" data-size="30">
-            <p v-on:click.stop>3</p>
-            <span v-on:click.stop>(4-7 KG)</span>
-          </li>
-          <li @click="onClickPack($event)" data-size="40">
-            <p v-on:click.stop>4</p>
-            <span v-on:click.stop>(7-10 KG)</span>
-          </li>
-          <li @click="onClickPack($event)" data-size="50">
-            <p v-on:click.stop>5</p>
-            <span v-on:click.stop>(10-12 KG)</span>
-          </li>
-        </ul>
-      </div>
-    </div>
-    <div class="test-pack-info">
-      <h2 class="title">Contains Your Test Package</h2>
-      <div class="columns">
-        <!-- <div class="row"> -->
-        <div class="column is-half">
-          <div class="columns">
-            <div class="column is-4 text-center" id="diaper-design-img">
-              <img
-                width="25%"
-                v-bind:src="require(`@/${imgDir}/lillydoo-little-blowballs-design-preview-tp.jpg`)"
-              >
+    </nav>
+    <div class="main container">
+      <div class="test-pack columns is-mobile">
+        <div class="diaper-images column is-5">
+          <img v-bind:src="require(`@/${imgDir}/${selectedTestPack.images.trial_pack}`)">
+        </div>
+        <div class="test-packages column is-6">
+          <section class="hero">
+            <div class="hero-body">
+              <h1 class="title">Our Free Test Package</h1>
+              <h2 class="subtitle">choose your size</h2>
             </div>
+          </section>
+          <!-- <h2>Our Free Test Package</h2>
+          <p style="text-transform: uppercase;">choose your size</p>-->
+          <ul class="btn-container">
+            <li
+              @click="onClickPack($event)"
+              data-size="10"
+              :class="{active: isActiveSize, button: true}"
+            >
+              <p v-on:click.stop>1</p>
+              <span v-on:click.stop>(2-3 KG)</span>
+            </li>
+            <li @click="onClickPack($event)" data-size="20" class="button">
+              <p v-on:click.stop>2</p>
+              <span v-on:click.stop>(3-4 KG)</span>
+            </li>
+            <li @click="onClickPack($event)" data-size="30" class="button">
+              <p v-on:click.stop>3</p>
+              <span v-on:click.stop>(4-7 KG)</span>
+            </li>
+            <li @click="onClickPack($event)" data-size="40" class="button">
+              <p v-on:click.stop>4</p>
+              <span v-on:click.stop>(7-10 KG)</span>
+            </li>
+            <li @click="onClickPack($event)" data-size="50" class="button">
+              <p v-on:click.stop>5</p>
+              <span v-on:click.stop>(10-12 KG)</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="test-pack-info">
+        <h2 class="title">Contains Your Test Package</h2>
+        <div class="columns">
+          <!-- <div class="row"> -->
+          <div class="column is-half">
+            <div class="columns">
+              <div class="column is-4 text-center" id="diaper-design-img">
+                <img
+                  v-bind:src="require(`@/${imgDir}/lillydoo-little-blowballs-design-preview-tp.jpg`)"
+                >
+              </div>
 
-            <div class="column is-4 trial-info">
-              <h4>10 Lillydoo diapers</h4>
-              <ul>
-                <li>
-                  <font style="vertical-align: inherit;">
-                    <font
-                      style="vertical-align: inherit;"
-                    >0% perfumes &amp; lotions, 100% LILLYDOO protection</font>
-                  </font>
-                </li>
-                <li>
-                  <font style="vertical-align: inherit;">
-                    <font style="vertical-align: inherit;">Extra soft and with an ideal fit</font>
-                  </font>
-                </li>
-              </ul>
+              <div class="column is-6 trial-info">
+                <h4>10 Lillydoo diapers</h4>
+                <ul>
+                  <li>0% perfumes &amp; lotions, 100% LILLYDOO protection</li>
+                  <li>Extra soft and with an ideal fit</li>
+                </ul>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="column is-half">
-          <div class="columns">
-            <div class="column is-3 trial-contains-img text-center">
-              <img v-bind:src="require(`@/${imgDir}/${selectedTestPack.images.wipes}`)">
-            </div>
-            <div class="column is-5 water-wipes" v-if="showWaterPipes">
-              <h4>
-                <font style="vertical-align: inherit;">
-                  <font style="vertical-align: inherit;">15 wet wipes with 99% water</font>
-                </font>
-              </h4>
-              <ul>
-                <li>
-                  <font style="vertical-align: inherit;">
-                    <font
-                      style="vertical-align: inherit;"
-                    >0% perfumes &amp; PEGs, 100% biodegradable</font>
-                  </font>
-                </li>
-                <li>
-                  <font style="vertical-align: inherit;">
-                    <font
-                      style="vertical-align: inherit;"
-                    >Naturally pure, extra mild, alternative to "water &amp; cotton"</font>
-                  </font>
-                </li>
-              </ul>
-            </div>
-            <div class="column is-5 sensitive-wipes" v-if="!showWaterPipes">
-              <h4>
-                <font style="vertical-align: inherit;">
-                  <font style="vertical-align: inherit;">15 sensitive wet wipes</font>
-                </font>
-              </h4>
-              <ul>
-                <li>
-                  <font style="vertical-align: inherit;">
-                    <font
-                      style="vertical-align: inherit;"
-                    >0% perfumes &amp; PEGs, 100% biodegradable</font>
-                  </font>
-                </li>
-                <li>
-                  <font style="vertical-align: inherit;">
-                    <font style="vertical-align: inherit;">Extra thick and compostable cloth</font>
-                  </font>
-                </li>
-              </ul>
+          <div class="column is-half">
+            <div class="columns">
+              <div class="column is-4 text-center">
+                <img v-bind:src="require(`@/${imgDir}/${selectedTestPack.images.wipes}`)">
+              </div>
+              <div class="column is-6 water-wipes" v-if="showWaterPipes">
+                <h4>15 wet wipes with 99% water</h4>
+                <ul>
+                  <li>0% perfumes &amp; PEGs, 100% biodegradable</li>
+                  <li>Naturally pure, extra mild, alternative to "water &amp; cotton"</li>
+                </ul>
+              </div>
+              <div class="column is-6 sensitive-wipes" v-if="!showWaterPipes">
+                <h4>15 sensitive wet wipes</h4>
+                <ul>
+                  <li>0% perfumes &amp; PEGs, 100% biodegradable</li>
+                  <li>Extra thick and compostable cloth</li>
+                </ul>
+              </div>
             </div>
           </div>
+          <!-- </div> -->
         </div>
-        <!-- </div> -->
       </div>
     </div>
   </div>
@@ -171,8 +143,9 @@ export default {
 @import "./../styles/variables.scss";
 @import "../../node_modules/bulma/bulma.sass";
 @mixin active {
-  background-color: #00afab;
-  border-color: #00afab;
+  background-color: #3273dc;
+  // border-color: #00afab;
+  border-color: transparent;
   color: #fff !important;
 }
 
@@ -222,15 +195,37 @@ export default {
   // grid-column-gap: 20em;
 }
 
+.test-pack-info {
+  & ul {
+    list-style-type: circle;
+    text-align: left;
+    & > li {
+      font-size: 14px;
+    }
+  }
+  & h2 {
+    font-size: 1.5rem !important;
+  }
+  & h4 {
+    text-align: left;
+  }
+}
+
 .text-center {
   text-align: center !important;
 }
 
-// .hover {
-//   background-color: #00afab;
-//   border-color: #00afab;
-//   color: #fff;
-// }
+h4 {
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.main-navbar {
+  background-color: gainsboro;
+}
 
 // Media queries
 /*
@@ -276,6 +271,18 @@ export default {
 
 @media (min-width: $breakpoint-mobileMinWidth) and (max-width: $breakpoint-mobileMaxWidth) {
   //CSS
+  .test-packages {
+    & .btn-container {
+      & li {
+        font-size: 8px;
+      }
+    }
+  }
+  .test-pack-info {
+    & ul {
+      list-style: circle;
+    }
+  }
 }
 
 /*
